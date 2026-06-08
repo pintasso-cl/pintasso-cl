@@ -1,0 +1,76 @@
+# .claudeignore
+# Excluir archivos y carpetas para optimizar el consumo de tokens en Claude Code
+
+# Dependencias y entornos virtuales
+node_modules/
+bower_components/
+.venv/
+venv/
+env/
+__pycache__/
+.pytest_cache/
+.tox/
+vendor/
+
+# Archivos de construcción y salida
+dist/
+build/
+out/
+target/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Archivos de sistema y logs
+.DS_Store
+Thumbs.db
+*.log
+logs/
+*.tmp
+*.bak
+.swp
+
+# Bases de datos y almacenamiento local
+*.sqlite
+*.db
+.storage/
+dump.rdb
+
+# Archivos de medios y binarios (Muy pesados en tokens)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.pdf
+*.zip
+*.tar.gz
+*.rar
+*.mp4
+*.mov
+*.wav
+*.mp3
+
+# Documentación autogenerada y cobertura
+docs/_build/
+coverage/
+.nyc_output/
+
+# Configuración de IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Control de versiones (Claude no necesita indexar la base de datos de git)
+.git/
+.svn/
+.hg/
+
+# Archivos de entorno y secretos (Seguridad y ahorro)
+.env
+.env.*
+*.pem
+*.key

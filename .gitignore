@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+aws/lambda/node_modules/
+
+# Build output
+dist/
+aws/lambda/dist/
+
+# Environment variables — never commit secrets
+.env
+.env.local
+.env.*.local
+terraform.tfvars
+
+# Terraform state and cache
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfstate.d/
+terraform/*.tfplan
+terraform/lambda.zip
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
