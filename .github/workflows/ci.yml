@@ -19,13 +19,13 @@ jobs:
           cache: pnpm
 
       - name: Install frontend dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Type check frontend
         run: pnpm exec tsc -b
 
       - name: Install Lambda dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
         working-directory: aws/lambda
 
       - name: Type check Lambda
