@@ -9,6 +9,7 @@ jobs:
   deploy-lambda:
     name: Deploy Lambda
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/checkout@v4
 
@@ -34,7 +35,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ vars.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Update Lambda function code
         run: |
@@ -46,6 +47,7 @@ jobs:
   deploy-spa:
     name: Deploy SPA
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/checkout@v4
 
@@ -63,13 +65,13 @@ jobs:
         run: pnpm build
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
-          VITE_CALCOM_LINK: ${{ vars.VITE_CALCOM_LINK }}
+          VITE_CALCOM_LINK: ${{ secrets.VITE_CALCOM_LINK }}
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ vars.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Sync hashed assets to S3 (long cache)
         run: |

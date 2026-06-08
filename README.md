@@ -235,12 +235,6 @@ Go to **Settings → Secrets and variables → Actions**.
 | `CLOUDFRONT_DISTRIBUTION_ID` | From CloudFront console or AWS CLI |
 | `LAMBDA_FUNCTION_NAME` | `pintasso-send-email` |
 | `VITE_API_URL` | `terraform output api_gateway_url` |
-
-**Variables** (non-sensitive):
-
-| Name | Value |
-|---|---|
-| `AWS_REGION` | e.g. `us-east-1` |
 | `VITE_CALCOM_LINK` | `pintasso-cl/visita-tecnica` |
 
 ### Commit lockfiles before first CI run
