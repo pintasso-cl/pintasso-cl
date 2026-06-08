@@ -1,0 +1,59 @@
+name: Provision Infrastructure
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build Lambda bundle
+        run: pnpm install --no-frozen-lockfile && pnpm build
+        working-directory: aws/lambda
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Restore Terraform state
+        uses: actions/cache/restore@v4
+        with:
+          path: terraform/terraform.tfstate
+          key: terraform-state
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: terraform
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: terraform
+        env:
+          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
+          TF_VAR_gmail_user: ${{ secrets.GMAIL_USER }}
+          TF_VAR_gmail_app_password: ${{ secrets.GMAIL_APP_PASSWORD }}
+
+      - name: Save Terraform state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: terraform/terraform.tfstate
+          key: terraform-state-${{ github.run_id }}
+
+      - name: Show infrastructure outputs
+        run: terraform output
+        working-directory: terraform
