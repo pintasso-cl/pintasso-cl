@@ -231,7 +231,6 @@ Go to **Settings → Secrets and variables → Actions**.
 |---|---|
 | `AWS_ACCESS_KEY_ID` | IAM key (needs S3 write, CloudFront invalidation, Lambda update) |
 | `AWS_SECRET_ACCESS_KEY` | Matching secret |
-| `AWS_REGION` | e.g. `us-east-1` |
 | `S3_BUCKET_NAME` | `terraform output s3_bucket_name` |
 | `CLOUDFRONT_DISTRIBUTION_ID` | From CloudFront console or AWS CLI |
 | `LAMBDA_FUNCTION_NAME` | `pintasso-send-email` |
@@ -241,6 +240,7 @@ Go to **Settings → Secrets and variables → Actions**.
 
 | Name | Value |
 |---|---|
+| `AWS_REGION` | e.g. `us-east-1` |
 | `VITE_CALCOM_LINK` | `pintasso-cl/visita-tecnica` |
 
 ### Commit lockfiles before first CI run
