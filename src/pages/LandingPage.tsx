@@ -1,12 +1,17 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 
+import imgLogo from "../images/logo.png";
+import imgAfter from "../images/after-example.jpg";
+import imgBefore from "../images/before-example.jpg";
+import imgHero from "../images/hero.png";
+
 const Cal = React.lazy(() =>
   import("@calcom/embed-react").then((m) => ({ default: m.default }))
 );
 
-const CALCOM_LINK = import.meta.env.VITE_CALCOM_LINK ?? "pintasso-cl/visita-tecnica";
-const API_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? "";
+const CALCOM_LINK = import.meta.env.VITE_CALCOM_LINK || "pintasso-cl/visita-tecnica";
+const API_URL = (import.meta.env.VITE_API_URL as string | undefined) || "";
 
 // ── Static data ───────────────────────────────────────────────────────────────
 
@@ -170,7 +175,7 @@ export default function LandingPage() {
       <header className="navbar bg-white backdrop-blur-lg sticky top-0 z-50 border-b border-base-200 px-4 lg:px-8">
         <div className="navbar-start">
           <a href="/" className="hover:animate-pulse">
-            <img src="/logo.png" alt="Pintasso" className="w-36 h-12 object-cover" />
+            <img src={imgLogo} alt="Pintasso" className="w-36 h-12 object-cover" />
           </a>
         </div>
 
@@ -208,8 +213,7 @@ export default function LandingPage() {
         <section
           className="relative hero"
           style={{
-            backgroundImage:
-              "url(https://pub-32b1cda619ea4beb87ec430bc7b9eb80.r2.dev/pintassocl/Ombre%20Pink%20and%20Purple%20Accent%20Wall%20for%20Teen%20Bedrooms.jpg)",
+            backgroundImage:`url(${imgHero})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
@@ -274,7 +278,7 @@ export default function LandingPage() {
             <div className="relative rounded-3xl overflow-hidden h-72 sm:h-96 mb-16 shadow-2xl border border-base-300">
               <div className="absolute inset-0 right-1/2 flex flex-col justify-end p-8 bg-base-100 overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none">
-                  <img src="/before-example.jpg" alt="Antes" className="w-full h-96 object-cover object-center" />
+                  <img src={imgBefore} alt="Antes" className="w-full h-96 object-cover object-center" />
                 </div>
                 <div className="relative p-4 bg-neutral/50 text-neutral-content">
                   <div className="badge badge-secondary mb-2">ANTES</div>
@@ -283,7 +287,7 @@ export default function LandingPage() {
               </div>
               <div className="absolute inset-0 left-1/2 flex flex-col justify-end p-8 bg-linear-to-br from-primary/15 via-base-200 to-secondary/10 overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none">
-                  <img src="/after-example.jpg" alt="Después" className="w-full h-96 object-cover object-center" />
+                  <img src={imgAfter} alt="Después" className="w-full h-96 object-cover object-center" />
                 </div>
                 <div className="relative p-4 bg-neutral/50 text-neutral-content">
                   <div className="badge badge-primary mb-2">DESPUÉS</div>
@@ -459,7 +463,7 @@ export default function LandingPage() {
       {/* ── FOOTER ────────────────────────────────────────────────────────────── */}
       <footer className="bg-white border-t border-base-200 py-14 px-6">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-6 text-center">
-          <img src="/logo.png" alt="Pintasso" className="w-72 h-30 object-cover" />
+          <img src={imgLogo} alt="Pintasso" className="w-72 h-30 object-cover" />
           <p className="text-sm text-base-content/45">Pintura de Alta Gama · Temuco, Región de La Araucanía</p>
           <nav className="flex flex-wrap justify-center gap-6 text-sm text-base-content/45">
             <a href="#experiencia" className="hover:text-primary transition-colors">Experiencia Digital</a>
